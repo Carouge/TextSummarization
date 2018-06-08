@@ -1,0 +1,34 @@
+\begin{thebibliography}{1}
+
+\bibitem{allahyari-17}
+Mehdi Allahyari, Seyedamin Pouriyeh, Mehdi Assefi, Saeid Safaei, Elizabeth~D.
+  Trippe, Juan~B. Gutierrez, and Krys Kochut.
+\newblock Text summarization techniques: A brief survey, 2017.
+
+\bibitem{fedus-18}
+William Fedus, Ian Goodfellow, and Andrew~M. Dai.
+\newblock Maskgan: Better text generation via filling in the gaps, 2018.
+
+\bibitem{zhang-17}
+Zhe Gan, Kai Fan, Zhi Chen, Ricardo Henao, Dinghan Shen, and Lawrence Carin.
+\newblock Adversarial feature matching for text generation, 2017.
+
+\bibitem{li-pan-18}
+Yang Li, Quan Pan, Suhang Wang, Tao Yang, and Erik Cambria.
+\newblock A generative model for category text generation, 2018.
+
+\bibitem{li-cohn-17}
+Yitong Li, Trevor Cohn, and Timothy Baldwin.
+\newblock Bibi system description: Building with cnns and breaking with deep
+  reinforcement learning, 2017.
+
+\bibitem{liu-17}
+Linqing Liu, Yao Lu, Min Yang, Qiang Qu, Jia Zhu, and Hongyan Li.
+\newblock Generative adversarial network for abstractive text summarization,
+  2017.
+
+\bibitem{sutskever-17}
+Ilya Sutskever, Oriol Vinyals, and Quoc~V. Le.
+\newblock Sequence to sequence learning with neural networks, 2014.
+
+\end{thebibliography}
