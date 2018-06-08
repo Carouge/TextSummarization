@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.3)  6 JUN 2018 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.3)  9 JUN 2018 02:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -987,15 +987,17 @@ hineLearning / comments / 40ldq6 /
  []
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 152.
-[2.2] (./paper.bbl) [3.3
+(Font)              scaled to size 5.5pt on input line 143.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.0pt on input line 155.
+[2.2] (./paper.bbl [3.3]) [4.4
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 184.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 184.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 184.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 184.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
 
 
 Package rerunfilecheck Warning: File `paper.out' has changed.
@@ -1003,38 +1005,45 @@ Package rerunfilecheck Warning: File `paper.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: 8A03A9A1F094D936924B09312A29004B;2801
-(rerunfilecheck)             After:  4D156E61A0538CEC786F8E1AAA48859C;3001.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 184.
+(rerunfilecheck)             Before: C47971C6CC29D01BE324FAC7C17A19D4;3463
+(rerunfilecheck)             After:  8AD9282C97FEEC8A65BB698C1F2517B4;3463.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 233.
  ) 
 Here is how much of TeX's memory you used:
- 17827 strings out of 492995
- 267648 string characters out of 6132704
- 384599 words of memory out of 5000000
- 20683 multiletter control sequences out of 15000+600000
- 121902 words of font info for 216 fonts, out of 8000000 for 9000
+ 17906 strings out of 492995
+ 268895 string characters out of 6132704
+ 386667 words of memory out of 5000000
+ 20701 multiletter control sequences out of 15000+600000
+ 138170 words of font info for 260 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,902b,501s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/
-usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/u
-sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/us
-r/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive
-/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_ki75ao.enc}{/usr/local/texlive/
-2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive/2
-017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/20
-17/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}</usr/local/texlive/201
-7/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTBI.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on paper.pdf (3 pages, 352256 bytes).
+ 60i,11n,94p,902b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{section*.17} has been referenced but does not exi
+st, replaced by a fixed one
+
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/us
+r/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr
+/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/
+local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2
+017/texmf-dist/fonts/enc/dvips/libertine/lbtn_ki75ao.enc}{/usr/local/texlive/20
+17/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive/201
+7/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/2017
+/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}</usr/local/texlive/2017/
+texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/local/texlive/20
+17/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTBI.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/20
+17/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf
+-dist/fonts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fon
+ts/type1/public/newtx/zxlri.pfb>
+Output written on paper.pdf (4 pages, 461721 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
- 48 named destinations out of 1000 (max. 500000)
- 30869 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 213 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 33461 words of extra memory for PDF output out of 35830 (max. 10000000)
 

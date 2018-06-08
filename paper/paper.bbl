@@ -1,9 +1,14 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{allahyari-17}
 Mehdi Allahyari, Seyedamin Pouriyeh, Mehdi Assefi, Saeid Safaei, Elizabeth~D.
   Trippe, Juan~B. Gutierrez, and Krys Kochut.
 \newblock Text summarization techniques: A brief survey, 2017.
+
+\bibitem{das-7}
+Dipanjan Das and Andr{\'e} F.~T. Martins.
+\newblock A survey on automatic text summarization.
+\newblock 2007.
 
 \bibitem{fedus-18}
 William Fedus, Ian Goodfellow, and Andrew~M. Dai.
@@ -12,6 +17,11 @@ William Fedus, Ian Goodfellow, and Andrew~M. Dai.
 \bibitem{zhang-17}
 Zhe Gan, Kai Fan, Zhi Chen, Ricardo Henao, Dinghan Shen, and Lawrence Carin.
 \newblock Adversarial feature matching for text generation, 2017.
+
+\bibitem{kumar-16}
+Yogan~Jaya Kumar, Ong~Sing Goh, Halizah Basiron, Ngo~Hea Choon, and Puspalata~C
+  Suppiah.
+\newblock A review on automatic text summarization approaches, 2016.
 
 \bibitem{li-pan-18}
 Yang Li, Quan Pan, Suhang Wang, Tao Yang, and Erik Cambria.
@@ -22,10 +32,20 @@ Yitong Li, Trevor Cohn, and Timothy Baldwin.
 \newblock Bibi system description: Building with cnns and breaking with deep
   reinforcement learning, 2017.
 
+\bibitem{lin-4}
+Chin-Yew Lin.
+\newblock Rouge: a package for automatic evaluation of summaries.
+\newblock July 2004.
+
 \bibitem{liu-17}
 Linqing Liu, Yao Lu, Min Yang, Qiang Qu, Jia Zhu, and Hongyan Li.
 \newblock Generative adversarial network for abstractive text summarization,
   2017.
+
+\bibitem{kishore-2}
+Kishore Papineni, Salim Roukos, Todd Ward, and Wei jing Zhu.
+\newblock Bleu: a method for automatic evaluation of machine translation.
+\newblock pages 311--318, 2002.
 
 \bibitem{sutskever-17}
 Ilya Sutskever, Oriol Vinyals, and Quoc~V. Le.

@@ -136,14 +136,55 @@ arXiv provides a RESTful API\footnote{\url{https://arxiv.org/help/api/index}} th
 
 \paragraph{} As a result, we have created a database of 2000 papers. For each of these papers we store its name, a list of authors, full text without an abstract, and abstract stored in a separate column.
 
+\section{Evaluation metrics}
+
+The most widely used score for evaluating text summarizations is Recall-Oriented Understudy for Gisting Evaluation (ROUGE) inroduced by Chin-Yew Lin in 2004\cite{lin-4}\cite{das-7}\cite{kishore-2}.
+
+\[ \text{ROUGE-N}(s) = \frac{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(s) \rangle}{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(r) \rangle} \]
+
+\[ \text{ROUGE-L}(s) = \frac{(1 + \beta^2) R_{LCS} P_{LCS}}{R_{LCS} + \beta^2 P_{LCS}} \]
+
+The problem with these scores is that all of them measure the number of words that occur in both expected and actual summary. This can be useful for extractive summarization but makes little sense for abstractive, because the summary can be generated with completely new words.
+
+For example, if the expeced summary is \textit{"The great paper"} and our model produces the summary \textit{"A wonderful article"}, ROUGE score will be $0$, even though the summary is perfect.
+
+\subsection{Embedding-based metric}
+
+We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of expected summaries.
+
+Our assumption is that a good summary of a document contains words that are semantically close to the most important words in that document.
+
+Let's denote an $n$-word summary as $S = (s_1, s_2, \dots, s_n)$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important words in the document. We define the norm of each word in the summary as its distance to the closest important word in the document
+
+\[ ||x||_{EMB} = \operatorname*{min}_j ||s_i - c_j||_2 \]
+
+Now the norm of a whole summary is the average of the norms of it words
+
+\[ ||S||_{EMB} = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
+
+To choose which words are important we can use an algorithm of extractive text summarization. We will use \textbf{term frequency-inverse document frequency} (tf-idf) as a measure of importance because of its simplicity and importance (according to \cite{kumar-16}, tf-idf is one of the universally used terminologies in extractive summarization).
+
 \section{Experiments and results}
-\subsection{Statistical NLP}
+
+We have tried different methods of text summarization, both extractive (TextRank, TF-IDF) and abstractive (LSTM, SeqGAN).
+
+\subsection{TextRank}
+
+
 \subsection{Deep LSTM}
 \subsection{GAN}
 
-\section{Evaluation}
+\section{Evaluating results}
 
-ROUGE is the most widely used metric for automatic evaluation.
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} \\
+\hline
+TextRank & 0 & 0 & 0 \\
+LSTM & 0 & 0 & 0 \\
+SeqGAN & 0 & 0 & 0 \\
+\hline
+\end{tabular}
 
 \section{Baseline models}
 
@@ -181,6 +222,10 @@ We are also currently looking for supervisors who might be interested in the fol
 \section*{Conclusions}
 
 In this paper we demonstrated how Generative Adversarial Networks can be used for abstractive text summarization.
+
+% \section*{Acknowledgements}
+
+% We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, Maryana Romanyshyn, and Oksana Tkach for supporting us with their advices.
 
 \bibliographystyle{plain}
 \bibliography{paper}
