@@ -88,34 +88,26 @@ In contrast Zhang et al.\cite{zhang-17} don't use reinforcement learning but rat
 
 \section{Data collection and preparation}
 
-arXiv provides a RESTful API\footnote{\url{https://arxiv.org/help/api/index}} that allows us to search for papers from a specific category and inside a specific time range. The results are returned as an HTML page which can be easily parsed.
+Thanks to the open policy of arXiv we were able to collect our own dataset of scientific papers from \textit{stat.ML} category. We publish it together with this paper an encourage everyone to use it as they like in their own projects.
 
-\paragraph{Collecting paper IDs} We started by making requests to arXiv and parsing the response to acquire unique identifiers of each paper. These are the fixed-length strings that look like this: \textbf{1801.01587}. They allow us to access everything related to this paper (including its metadata and full text as PDF). We have only collected 2000 IDs from stat.ML category. We didn't collect all the papers because of network restrictions of arXiv API, huge amount of space required to store them, and the time required to process them. Same approach can be used to collect more data, but for our problem a set of 2000 papers from one category is enough. For example, DUC (Document Understanding Conference) dataset which is among the most commonly used in the feld of text summarization has 30 sets with approximately 10 documents each\footnote{\url{https://www-nlpir.nist.gov/projects/duc/guidelines/2001.html}}. 
+\paragraph{Structure of the data} Each paper on arXiv has a unique identifier (for eample: 1801.01587). It can be used to extract any data that is available and related to that paper, including its metadata and full text as PDF.
 
-\paragraph{Collecting abstracts} Having the list of paper IDs it was no trouble to make 2000 requests to the API and collect abstracts of these papers in plain text form. To get the full text of a paper we must parse its PDF, which can introduce noise and loose peces of text. So being able to collect abstracts directly from arXiv greatly simplifies the task.
+Our dataset contains 2000 documents (papers). Each one of them is represented by a row with three properties:
 
-\paragraph{Downloading PDF files} The same way as we did it with abstracts, we were able to construct URLs using paper IDs, and donload each paper using wget tool.
+\begin{itemize}
+  \item arXiv's unique identifier
+  \item title
+  \item abstract
+  \item body of the paper
+\end{itemize}
 
-\paragraph{Extracting text from PDF} Extracting text from PDF is a complicated task. We used a python binding to Apache Tika\footnote{\url{https://github.com/chrismattmann/tika-python}} to parse the PDF files. The extracted text contained many special characters (noise) which had to be removed manually. 
+Our script\footnote{Code and instructions for collecting the data is available in our repository: \url{https://github.com/MachineLearningUCU/TextSummarization}} can be used to collect more data, but for our problem a set of 2000 papers from one category is enough. For example, DUC (Document Understanding Conference) dataset which is among the most commonly used in the feld of text summarization has 30 sets with approximately 10 documents each\footnote{\url{https://www-nlpir.nist.gov/projects/duc/guidelines/2001.html}}.
 
-\paragraph{Cleaning the text} After removing special characters produced by Tika, we also had to remove all mathematical expressions because the can not be parsed into plain text and Tika just turns an expression like this $y = f(x)$ into something like \textit{y f x} or \textit{ytx}. More complex expressions (like sums, integrals etc.) produced much more noise, and it was very hard to identify and remove it. We wanted to remove everething that is not a known English word. But that would filter out words like "GAN", "backprop" etc. So we filtered the words based on their length and frequence of vowels. That leaves some noise, but it shouldn't cause too much damage to our model (at least less damage than would be caused by removing the word "GAN"). Hopefully, we will come up with a more ellegant solution by the time of second evaluations.
+\paragraph{Cleaning the text} We collected our data as PDF files and parsed them to extract the raw text. This produced a huge amount of uniterpretable UTF-8 characters from mathematical expressions. After removing those extra characters.
 
-\paragraph{} As a result, we have created a database of 2000 papers. For each of these papers we store its name, a list of authors, full text without an abstract, and abstract stored in a separate column.
-
-\subsection{Examples}
-
-\begin{quote}
-Significant attention has been given to minimizing a penalized least squares criterion for estimating sparse solutions to large linear systems of equations. The penalty is responsible for inducing sparsity and the natural choice is the so-called $l_0$ norm. In this paper we develop a Momentumized Iterative Shrinkage Thresholding (MIST) algorithm for minimizing the resulting non-convex criterion and prove its convergence to a local minimizer. Simulations on large data sets show superior performance of the proposed method to other methods.
-\end{quote}
-
-The title of this paper is \textbf{MIST: L0 Sparse Linear Regression with Momentum}.
+We wanted to remove everething that is not a known English word, but that would filter out words like "GAN", "backprop" etc. as most standard corpuses of words, such as nltk.corpus, don't include specialized scientific terminology. So we filtered the words using manually created rules based on features like word length and frequence of vowels. This leaves some noise behind, but it will not affect our models.
 
 \section{Models for text summarization}
-\subsection{Statistical models}
-
-\subsection{Deep models}
-
-\subsubsection{LSTM}
 
 \subsubsection{Generative adversarial networks}
 Generative adversarial networks (GAN) have shown a lot of success in image generation. However until recent years they were considered inapplicable to the discrete problems of natural language processing (NLP). The latest papers introduce novel approaches to overcoming these issues by combining GANs with reinforcement learning models and lay the foundation for the whole new field of research of adversarial language processing.
