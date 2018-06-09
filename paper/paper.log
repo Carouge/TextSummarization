@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.3)  9 JUN 2018 03:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.3)  9 JUN 2018 20:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -957,69 +957,62 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 51.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/it' will be
 (Font)              scaled to size 10.0pt on input line 51.
-
-Underfull \vbox (badness 1052) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 93.
+(Font)              scaled to size 10.0pt on input line 81.
 
-Overfull \hbox (2.17403pt too wide) in paragraph at lines 93--94
+Overfull \hbox (2.17403pt too wide) in paragraph at lines 81--82
 \T1/LinuxLibertineT-TLF/m/n/10 (-20) cov-er-age net-works, and the ab-strac-tiv
 e deep re-in-forced model. 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 91.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.2pt on input line 91.
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 91.
+[1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 116.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 116.
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 116.
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--116
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 [][][]\T1/LinuxLibertineT-TLF/m/n/8 (+20) Ian Good-fel-low's an-swer to the re-
 lated ques-tion on Red-dit:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--116
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 []$\T1/LinuxBiolinumT-TLF/m/n/8 (+20) h^^]ps : / / www . reddit . com / r / Mac
 hineLearning / comments / 40ldq6 /
  []
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 145.
+(Font)              scaled to size 5.5pt on input line 146.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 151.
+(Font)              scaled to size 7.0pt on input line 154.
 [2.2] (./paper.bbl [3.3]) [4.4
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 235.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 235.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 236.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 236.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 235.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 235.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 236.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 236.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 8AD9282C97FEEC8A65BB698C1F2517B4;3463.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 235.
+(rerunfilecheck)             Checksum: 5720411C867032946D934D6467BFD577;3433.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 236.
  ) 
 Here is how much of TeX's memory you used:
- 17905 strings out of 492995
- 268884 string characters out of 6132704
- 386667 words of memory out of 5000000
+ 17918 strings out of 492995
+ 269194 string characters out of 6132704
+ 386670 words of memory out of 5000000
  20701 multiletter control sequences out of 15000+600000
- 138170 words of font info for 260 fonts, out of 8000000 for 9000
+ 139262 words of font info for 268 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,902b,574s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,971b,576s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/
-usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/u
-sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/us
-r/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive
+usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/u
+sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texliv
+e/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive
 /2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_ki75ao.enc}{/usr/local/texlive/
 2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive/2
 017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/20
@@ -1036,10 +1029,10 @@ texlive/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/tex
 mf-dist/fonts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/f
 onts/type1/public/newtx/zxlri.pfb>
-Output written on paper.pdf (4 pages, 461874 bytes).
+Output written on paper.pdf (4 pages, 462693 bytes).
 PDF statistics:
- 250 PDF objects out of 1000 (max. 8388607)
- 212 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
+ 254 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
  33461 words of extra memory for PDF output out of 35830 (max. 10000000)
 
