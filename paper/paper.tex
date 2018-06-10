@@ -170,13 +170,13 @@ Let $s$ be the generated summary. If $|s|$ is the number of words in summary $s$
 
 The metric we propose is in fact a continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semmantic distance between those n-grams.
 
-For each $n$-gram in the generated summary we calculate the embedding-based score as its distance to the closest important $n$-gram in the document.
+For each $n$-gram in the generated summary we calculate the embedding-based score as its distance to the closest important $n$-gram in the document\footnote{CAROUGE stands for Continuous Abstractive ROUGE. The French word \textbf{carouge} means blackbird}.
 
-\[ \text{CROUGE-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CAROUGE-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 Now we define the score of the whole summary as the average score of its words
 
-\[ \text{CROUGE-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CAROUGE-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 \subsubsection{Measuring word importance}
 \label{sec:importance}
