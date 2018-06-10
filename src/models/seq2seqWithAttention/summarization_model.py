@@ -1,4 +1,5 @@
 """
+This model on based on the work of Jishnu Ray Chowdhury
 Source: https://github.com/JRC1995/Abstractive-Summarization
 """
 from __future__ import division
