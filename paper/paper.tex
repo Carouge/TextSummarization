@@ -93,12 +93,12 @@ Thanks to the open policy of arXiv we were able to collect our own dataset of sc
 
 Our dataset contains 2000 documents (papers). Each one of them is represented by a row with the following properties:
 
-\begin{itemize}
+\begin{enumerate}
   \item arXiv's unique identifier
   \item title
   \item abstract
   \item body of the paper
-\end{itemize}
+\end{enumerate}
 
 Our script\footnote{Code and instructions for collecting the data is available in our repository: \url{https://github.com/MachineLearningUCU/TextSummarization}} can be used to collect more data, but for our problem a set of 2000 papers from one category is enough. For example, DUC (Document Understanding Conference) dataset which is among the most commonly used in the feld of text summarization has 30 sets with approximately 10 documents each\footnote{\url{https://www-nlpir.nist.gov/projects/duc/guidelines/2001.html}}.
 
@@ -127,36 +127,42 @@ However, this approach has not been used for abstract text summarization of scie
 
 \section{Evaluation metrics}
 
-Evaluating a summary is a difficult task because there is no single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better.\cite{das-7}. Unlike other NLP problems, like translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Manual evaluation of summaries is too expensive, so in the following sections we will only consider automatic techniques. 
+Evaluating a summary is a difficult task because there is no such thing as a single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better\cite{das-7}. Unlike other NLP problems, such as translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Therefore we must make assumptions about the space of good summaries. 
 
-Automatic evaluation metrics compare manually written ideal summaries with summaries generated automatically by summarization systems.
+\begin{enumerate}
+\item assume that a good summary would be close to some \textit{ideal} summary manually created by humans
+\item assume that the goodness of summary can be measured as the ammount of important information it contains (this assumption can be infered from the definition of text summarization).
+\end{enumerate}
+
+In the following sections we briefly describe some of the commonly used metrics for text summarization that is based on the first assumption and propose our own metric that is based on second one (in fact, we will show that the proposed metric can be formulated in a different way to work with the first assumption).
 
 \subsection{ROUGE}
 
-The most widely used score for evaluating text summarizations is Recall-Oriented Understudy for Gisting Evaluation (ROUGE) inroduced by Chin-Yew Lin in 2004\cite{lin-4}\cite{das-7}\cite{kishore-2}.
+The most widely used score for evaluating text summarizations is ROUGE (Recall-Oriented Understudy for Gisting Evaluation) inroduced by Chin-Yew Lin in 2004\cite{lin-4}\cite{kishore-2}.
 
 \[ \text{ROUGE-N}(s) = \frac{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(s) \rangle}{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(r) \rangle} \]
 
 \[ \text{ROUGE-L}(s) = \frac{(1 + \beta^2) R_{LCS} P_{LCS}}{R_{LCS} + \beta^2 P_{LCS}} \]
 
-The problem with these scores is that all of them measure the number of words that occur in both expected and actual summary. This can be useful for extractive summarization but makes little sense for abstractive, because the summary can be generated with completely new words.
+ROUGE works well for extractive text summarization. But if we need to evaluate the generated summary which contains different words from the ones that occured in paper, the score will always be small because, even though the new words can be close to the expected ones, two summaries don't overlap in terms of word equality.
 
-For example, if the expeced summary is \textit{"The great paper"} and our model produces the summary \textit{"A wonderful article"}, ROUGE score will be $0$, even though the summary is perfect.
+For example, if the human-created summary is \textit{"The great paper"} and our model produces \textit{"A wonderful article"}, ROUGE score will be $0$, even though the summary is perfect.
 
 \subsection{Embedding-based metric}
 
-We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of expected summaries.
+We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of good summaries. Our assumption is that a good summary of a document contains words that are semantically close to the most important words or n-grams in that document.
 
-Our assumption is that a good summary of a document contains words that are semantically close to the most important words in that document.
+Let's denote an $n$-word summary as $S = (s_1, s_2, \dots, s_n)$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important n-grams in the document. For each n-gram in the generated summary we calculate the embedding-based score as its distance to the closest important n-gram in the document.
 
-Let's denote an $n$-word summary as $S = (s_1, s_2, \dots, s_n)$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important words in the document. We define the norm of each word in the summary as its distance to the closest important word in the document
+\[ \text{EBM-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
 
-\[ ||x||_{EMB} = \operatorname*{min}_j ||s_i - c_j||_2 \]
+Now we define the score of the whole summary as the average score of its words
 
-Now the norm of a whole summary is the average of the norms of it words
+\[ \text{EBM-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
 
-\[ ||S||_{EMB} = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
+This metric is in fact the continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semmantic distance between those n-grams.
 
+\subsubsection{Measuring word importance}
 To choose which words are important we can use an algorithm of extractive text summarization. We will use \textbf{term frequency-inverse document frequency} (tf-idf) as a measure of importance because of its simplicity and importance (according to \cite{kumar-16}, tf-idf is one of the universally used terminologies in extractive summarization).
 
 \section{Experiments and results}
