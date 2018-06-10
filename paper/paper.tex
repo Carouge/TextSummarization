@@ -70,13 +70,11 @@ In this study we focus on abstractive text summarization. We do a brief overview
 
 \section{Related work}
 
-Allahyari et al.\cite{allahyari-17} make a survey of the most successful text summarization techniques as of July 2017.
+Das et al. made a survey of the most successful text summarization techniques as of the year 2007\cite{das-7}. Simmilar survey was made 10 years later by Allahyari et al\cite{allahyari-17}.
 
-This September Li et al. \cite{li-cohn-17} described their submission to the sentiment analysis sub-task of ?Build It, Break It: The Language Edition (BIBI)? where they successfully apply generative approach to the problem of sentiment analysis.
+ROUGE - the most widely used metric for text summarization was presented by Chin-Yew Lin in July 2004\cite{lin-4}. The metric developed by us is greatly influenced by the the work of this author. Great overview of existing evaluation metrics was also done in \cite{das-7} and \cite{allahyari-17}.
 
-In their paper \textit{Generative Adversarial Network for Abstractive Text Summarization} Liu et al.\cite{liu-17} built an adversarial model that achieved competitive ROUGE scores with the state-of-the-art methods on CNN/Daily Mail dataset. They compare the performance of their approach with three methods, including the abstractive model, the pointer-generator coverage networks, and the abstractive deep reinforced model.
-
-In contrast Zhang et al.\cite{zhang-17} don't use reinforcement learning but rather introduce TextGAN with an LSTM-based generator and kernelized discrepancy metric.
+Fedus, Goodfellow, and Dai\cite{fedus-18} wrote an amazing paper about their application of generative adversarial networks to the problem of filling the gaps in text. However, as we show in section \ref{sec:ml}, this approach can not be easily applied to our problem.
 
 \section{Data collection and preparation}
 \label{sec:data}
@@ -113,6 +111,7 @@ These methods are based on the assumption that the importance of a word or sente
 We can build a graph of each document where words or sentences are nodes and the edges are the connections between each pair of nodes. The weights on these edges represent similarity between words or sentences in the whole text. While proving to have better results than simple frequency-based methods, graph models are still bounded by the absence of lexic understanding and ability to perform extractive summary only.
 
 \subsection{Machine learning approach}
+\label{sec:ml}
 
 In the last years, lots of attention was focused on learning how to apply neural networks to NLP tasks, including text summarization. Using encoder-decoder models it is now possible to produce abstract summaries. In \cite{nallapati-16} the off-the-shelf attentional encoder-decoder RNN that was originally developed for machine translation was applied to summarization and outperformed state-of-the-art systems on two different English corpora. However, there is not much information about neural networks usage in scientific text summarization.
 
@@ -120,8 +119,7 @@ Generative adversarial networks (GAN) are another promising approach for text su
 
 Applying generative adversarial networks to the problems of NLP is considered to be a complicated task because GANs are only defined for continuous data, and all NLP is based on discrete values like words, characters, or bytes.
 
-However, in their latest paper Fedus, Goodfellow, and Dai\cite{fedus-18} overcome this problem by using reinforcement learning to train the generator while the discriminator is still trained via maximum likelihood and stochastic gradient descent, and use it to fill the gaps in the text.
-
+However, in their latest paper Fedus, Goodfellow, and Dai\cite{fedus-18} overcome this problem by using reinforcement learning to train the generator while the discriminator is still trained via maximum likelihood and stochastic gradient descent, and use it to fill the gaps in the text. This is an amazing result that can become an inspiration for others to develop GAN-based solutions for the problems of text sumarization. Nevertheless, summarization is way more complex than the problem of filling the gaps, and therefore, to our knowledge, there are no successful examples of applying adversarial networs to problems similar to ours. We ourselves have tried this new approach, but failed to produce good results.
 
 \section{Evaluation metrics}
 \label{sec:evaluation}
@@ -184,7 +182,7 @@ We have tried different methods of text summarization, both extractive (TextRank
 
 \subsection{RAKE}
 
-Rapid Automatic Keyword Extraction algorithm (RAKE)\cite{rose-10} is a keyword extraction algorithm which tries to determine key phrases in a body of text by analyzing the frequency of word appearance and its co-occurance with other words in the text. Its main advantages include  time efﬁciency, operating on individual documents. It can be easily applied to new domains and multiple types of documents. RAKE is very sensitive to unclean data, as it relies on word frequency.
+Rapid Automatic Keyword Extraction algorithm (RAKE)\cite{rose-10} is a keyword extraction algorithm which tries to determine key phrases in a body of text by analyzing the frequency of word appearance and its co-occurance with other words in the text. Its main advantages include time efficiency, operating on individual documents. It can be easily applied to new domains and multiple types of documents. RAKE is very sensitive to unclean data, as it relies on word frequency.
 
 \begin{table}[H]
 \caption{Example of an abstract generated by RAKE}
