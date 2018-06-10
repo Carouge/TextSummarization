@@ -130,6 +130,7 @@ However, in their latest paper Fedus, Goodfellow, and Dai\cite{fedus-18} overcom
 
 
 \section{Evaluation metrics}
+\label{sec:evaluation}
 
 Evaluating a summary is a difficult task because there is no such thing as a single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better\cite{das-7}. Unlike other NLP problems, such as translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Therefore we must make assumptions about the space of good summaries. 
 
@@ -156,17 +157,21 @@ For example, if the human-created summary is \textit{"The great paper"} and our 
 
 We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of good summaries. Our assumption is that a good summary of a document contains words that are semantically close to the most important words or n-grams in that document.
 
-Let's denote an $n$-word summary as $S = (s_1, s_2, \dots, s_n)$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important n-grams in the document. For each n-gram in the generated summary we calculate the embedding-based score as its distance to the closest important n-gram in the document.
+Let $s$ be the generated summary. If $|s|$ is the number of words in summary $s$, then $m=|s|-n+1$ is the number of $n$-grams in this summary. Let $s_1, s_2, \dots, s_m$ be all $n$-grams of summary $s$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important $n$-grams in the document. As we will show in section \ref{sec:importance}, there are many ways of measuring the importance of $n$-grams in a document. The definition of $n$-gram importance is closely related to the two base assumptions that were mentioned at the beginning of section \ref{sec:evaluation}.
 
-\[ \text{EBM-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
+The metric we propose is in fact a continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semmantic distance between those n-grams.
+
+For each $n$-gram in the generated summary we calculate the embedding-based score as its distance to the closest important $n$-gram in the document\footnote{CAROUGE stands for Continuous Abstractive ROUGE. The French word \textbf{carouge} means blackbird}.
+
+\[ \text{CAROUGE-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 Now we define the score of the whole summary as the average score of its words
 
-\[ \text{EBM-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
-
-This metric is in fact the continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semmantic distance between those n-grams.
+\[ \text{CAROUGE-N}(s) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 \subsubsection{Measuring word importance}
+\label{sec:importance}
+
 To choose which words are important we can use an algorithm of extractive text summarization. We will use \textbf{term frequency-inverse document frequency} (tf-idf) as a measure of importance because of its simplicity and importance (according to \cite{kumar-16}, tf-idf is one of the universally used terminologies in extractive summarization).
 
 \section{Experiments and results}
