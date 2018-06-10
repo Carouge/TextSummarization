@@ -40,9 +40,11 @@
 
 \begin{abstract}
 
-In this work we overview recent advancements in the field of abstractive text summarization and discuss the use of deep learning models, especially Generative Adversarial Networks (GAN). We apply different models to our dataset of scientifix papers, acquired from arXiv, and evaluate them in terms of simplicity and performance.
+Summarization of scientific papers is a unique case of text summarization which allows us to use abstracts as human-created labels for our dataset because they are the summaries written by the authors. This allows us to collect great amounts of labeled data for our models to learn from.
+ 
+In this work, we overview different approaches to text summarization and compare their results with different evaluation metrics. We demonstrate the downsides of ROUGE, the most commonly used summarization metric and introduce our own metric called CAROUGE, which gives more accurate scores for abstractive summaries.
 
-We propose our own metric based on word-embeddings, which we believe will be more suitable for evaluation of abstractive summaries.
+We also present our new dataset of 2000 scientific papers collected from arXiv. All experiments, described in this paper are performed on the data from our dataset, except for the final stage of our project where we involve 5 human judges to do a manual summarization of several papers from the dataset.
 
 \end{abstract}
 
@@ -64,9 +66,9 @@ Automatic text summarization is the task of producing a concise and fluent summa
 
 The problem of summarizing scientific texts is very different from general-purpose text summarization. Every scientific paper starts with an abstract, which by its nature is the summary of a document created by its human-author. This allows us to can create a human-labeled dataset of scientific papers just by separating abstracts from the text body.
 
-\subsection{Structure of the paper}
+% \subsection{Structure of the paper}
 
-In this study we focus on abstractive text summarization. We do a brief overview of the related work that has been done in this field. Then we proceed to discussing different models for statistical and deep summarization. Then we present our dataset of scientific papers collected from arXiv and compare the performance of different models on this dataset. 
+% In this study we focus on abstractive text summarization. We do a brief overview of the related work that has been done in this field. Then we proceed to discussing different models for statistical and deep summarization. Then we present our dataset of scientific papers collected from arXiv and compare the performance of different models on this dataset. 
 
 \section{Related work}
 
@@ -131,16 +133,16 @@ Evaluating a summary is a difficult task because there is no such thing as a sin
 \item assume that the goodness of summary can be measured as the ammount of important information it contains (this assumption can be infered from the definition of text summarization).
 \end{enumerate}
 
-In the following sections we briefly describe some of the commonly used metrics for text summarization that is based on the first assumption and propose our own metric that is based on second one (in fact, we will show that the proposed metric can be formulated in a different way to work with the first assumption).
+In the following sections we describe one commonly used summarization metric that is based on the first assumption and propose our own metric that is based on second one (we will show that the proposed metric can be formulated in a different way to work with the first assumption).
 
 \subsection{ROUGE}
 \label{sec:rouge}
 
 The most widely used score for evaluating text summarizations is ROUGE (Recall-Oriented Understudy for Gisting Evaluation) inroduced by Chin-Yew Lin in 2004\cite{lin-4}.
 
-\[ \text{ROUGE-N}(s) = \frac{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(s) \rangle}{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(r) \rangle} \]
+\[ \text{ROUGE-N}(s) = \frac{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(s) \rangle}{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(r) \rangle} \].
 
-\[ \text{ROUGE-L}(s) = \frac{(1 + \beta^2) R_{LCS} P_{LCS}}{R_{LCS} + \beta^2 P_{LCS}} \]
+Here $\Phi_n(d)$ is a binary vector representing the $n$-grams contained in document $d$, $s$ is the generated summary and $r$ is the human-created summary. In simple terms, ROUGE-N is a fraction $q/k$, where $q$ is the number of $n$-grams that are present in both $s$ and $r$, and $k$ is the total number of $n$-grams in $r$. 
 
 ROUGE works well for extractive text summarization. But if we need to evaluate the generated summary which contains different words from the ones that occured in paper, the score will always be small because, even though the new words can be close to the expected ones, two summaries don't overlap in terms of word equality.
 
@@ -271,9 +273,9 @@ Human & 0.77 & 0.43 & 0.98 \\
 
 \section*{Conclusions}
 
-In this paper we demonstrated how Generative Adversarial Networks can be used for abstractive text summarization.
+We have discussed different approaches to scientific text summarization and evaluated them with both ROUGE and CAROUGE (Continuous Abstractive ROUGE) - a new metric proposed by us that produces more accurate scores of abstractive summaries thanks to its continuous nature.
 
-As we have seen in section \ref{sec:results}, both ROUGE and CAROUGE metrics give very high scores to human-created summaries, and much lower scores for the summaries produced by algorithms. However, consider the fact that the base assumption of ROUGE takes human judgement as the ground truth
+As we have seen in section \ref{sec:results}, both ROUGE and CAROUGE metrics give very high scores to human-created summaries, and much lower scores for the summaries produced by algorithms. However, considering the fact that ROUGE assumes human-judgement to be perfect, the score of 0.43 is way too low. As we explained in section \ref{sec:rouge}, this happens because human judgement is abstractive by its nature, and ROUGE score words best on extractive summaries. This problem is fixed by our metric, which gives the score of 0.98 on the same data.
 
 % \section*{Acknowledgements}
 
