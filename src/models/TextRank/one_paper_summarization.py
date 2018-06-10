@@ -16,7 +16,7 @@ def summarize_doc(content, len_words):
     filtered_words = tokenizer.tokenize(' '.join(filtered_words))
     return summarized, filtered_words
 
-dataset = pd.read_csv('./dataset.csv')
+dataset = pd.read_csv('../../../data/papers-2K.csv')
 ind = 5   # paper id, position in dataset
 content = dataset['text'][ind]
 

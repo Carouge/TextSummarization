@@ -20,7 +20,7 @@ def summarize_doc(content, len_words):
     filtered_words = tokenizer.tokenize(' '.join(filtered_words))
     return summarized, filtered_words
 
-dataset = pd.read_csv('./dataset.csv')
+dataset = pd.read_csv('../../../data/papers-2K.csv')
 testrank_res = pd.DataFrame(dataset['id'])
 testrank_res['BLEU'], testrank_res['ROUGE2_f'], testrank_res['ROUGE1_f'], testrank_res['ROUGE1_p'], testrank_res['ROUGE2_p'] = None, None, None, None, None
 testrank_res['BLEU_unfilter'], testrank_res['ROUGE2_f_unfilter'], testrank_res['ROUGE1_f_unfilter'], testrank_res['ROUGE1_p_unfilter'], testrank_res['ROUGE2_p_unfilter'] = None, None, None, None, None

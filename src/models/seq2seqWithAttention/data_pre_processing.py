@@ -1,4 +1,5 @@
 """
+This model on based on the work of Jishnu Ray Chowdhury
 Source: https://github.com/JRC1995/Abstractive-Summarization
 """
 import numpy as np
@@ -28,10 +29,6 @@ embedding = embedding.astype(np.float32)
 
 word_vec_dim = len(embd[0]) # word_vec_dim = dimension of each word vectors
 
-
-# In[3]:
-
-
 import csv
 import sys
 import nltk as nlp
@@ -59,18 +56,12 @@ with open('dataset.csv', 'rb') as csvfile: #Data from https://www.kaggle.com/sna
         texts.append(word_tokenize(clean_text))
 
 
-# In[4]:
-
-
 import random
 
 index = random.randint(0,len(texts)-1)
 
 print "SAMPLE CLEANED & TOKENIZED TEXT: \n\n"+str(texts[index])
 print "\nSAMPLE CLEANED & TOKENIZED SUMMARY: \n\n"+str(summaries[index])
-
-
-# In[5]:
 
 
 def np_nearest_neighbour(x):
@@ -104,15 +95,9 @@ def vec2word(vec):   # converts a given vector representation into the represent
     return vec2word(np_nearest_neighbour(np.asarray(vec)))
 
 
-# In[6]:
-
-
 word = "unk"
 print "Vector representation of '"+str(word)+"':\n"
 print word2vec(word)
-
-
-# In[7]:
 
 
 #REDUCE DATA (FOR SPEEDING UP THE NEXT STEPS)
@@ -121,9 +106,6 @@ MAXIMUM_DATA_NUM = 2000
 
 texts = texts[0:MAXIMUM_DATA_NUM]
 summaries = summaries[0:MAXIMUM_DATA_NUM]
-
-
-# In[8]:
 
 
 vocab_limit = []
@@ -139,9 +121,6 @@ for i in tqdm(range(len(texts))):
                 embd_limit.append(word2vec(word))
 
 
-# In[9]:
-
-
 for i in tqdm(range(len(summaries))):
     summary = summaries[i]
     for word in summary:
@@ -149,9 +128,6 @@ for i in tqdm(range(len(summaries))):
             if word in vocab:
                 vocab_limit.append(word)
                 embd_limit.append(word2vec(word))
-
-
-# In[10]:
 
 
 if 'eos' not in vocab_limit:
@@ -165,9 +141,6 @@ null_vector = np.zeros([word_vec_dim])
 
 vocab_limit.append('<PAD>')
 embd_limit.append(null_vector)    
-
-
-# In[11]:
 
 
 vec_summaries = []
@@ -187,9 +160,6 @@ for summary in tqdm(summaries):
     vec_summaries.append(vec_summary)
 
 
-# In[12]:
-
-
 vec_texts = []
 
 for i in tqdm(range(len(texts))):
@@ -205,9 +175,6 @@ for i in tqdm(range(len(texts))):
     vec_texts.append(vec_text)    
 
 
-# In[13]:
-
-
 #Saving processed data in another file.
 
 import pickle
@@ -219,4 +186,3 @@ with open('vec_summaries', 'wb') as fp:
     pickle.dump(vec_summaries, fp)
 with open('vec_texts', 'wb') as fp:
     pickle.dump(vec_texts, fp)
-
