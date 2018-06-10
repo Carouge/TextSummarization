@@ -51,21 +51,20 @@ We propose our own metric based on word-embeddings, which we believe will be mor
 \maketitle
 
 \section{Introduction}
-Text summarization is a problem of 
-
-\subsection{Abstractive vs Extractive summarization}
-
-Abstractive text summarization allows us to write summaries that are almost as good as those written by humans.
-
-Abstractive text summarization is more challenging, but it is close to what humans do.
-
-Data-driven approach
 
 Automatic text summarization is the task of producing a concise and fluent summary while preserving key information content and overall meaning\cite{allahyari-17}.
 
-\subsection{The power of extractive summarization}
+\subsection{Abstractive vs extractive summarization}
 
-Though it will not be the focus of our work, extractive text summarization is dominant in this field and serves as a baseline for abstractive models. Before we move any further, we must understand what makes statistical techniques so powerful.
+\paragraph{Extractive text summarization}
+
+\subsection{Abstractive summarization}
+
+\paragraph{Abstractive text summarization} allows us to write summaries that are almost as good as those written by humans. It is closer to what humans do when they write text summaries, but also more complex. T
+
+\subsection{Scientific text summarization}
+
+The problem of summarizing scientific texts is very different from general-purpose text summarization. Every scientific paper starts with an abstract, which by its nature is the summary of a document created by its human-author. This allows us to can create a human-labeled dataset of scientific papers just by separating abstracts from the text body.
 
 \subsection{Structure of the paper}
 
@@ -82,6 +81,7 @@ In their paper \textit{Generative Adversarial Network for Abstractive Text Summa
 In contrast Zhang et al.\cite{zhang-17} don't use reinforcement learning but rather introduce TextGAN with an LSTM-based generator and kernelized discrepancy metric.
 
 \section{Data collection and preparation}
+\label{sec:data}
 
 Thanks to the open policy of arXiv we were able to collect our own dataset of scientific papers from \textit{stat.ML} category\footnote{\url{https://arxiv.org/list/stat.ML/recent}}. We publish it together with this paper an encourage everyone to use it as they like in their own projects.
 
@@ -138,8 +138,9 @@ Evaluating a summary is a difficult task because there is no such thing as a sin
 In the following sections we briefly describe some of the commonly used metrics for text summarization that is based on the first assumption and propose our own metric that is based on second one (in fact, we will show that the proposed metric can be formulated in a different way to work with the first assumption).
 
 \subsection{ROUGE}
+\label{sec:rouge}
 
-The most widely used score for evaluating text summarizations is ROUGE (Recall-Oriented Understudy for Gisting Evaluation) inroduced by Chin-Yew Lin in 2004\cite{lin-4}\cite{kishore-2}.
+The most widely used score for evaluating text summarizations is ROUGE (Recall-Oriented Understudy for Gisting Evaluation) inroduced by Chin-Yew Lin in 2004\cite{lin-4}.
 
 \[ \text{ROUGE-N}(s) = \frac{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(s) \rangle}{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(r) \rangle} \]
 
@@ -149,7 +150,7 @@ ROUGE works well for extractive text summarization. But if we need to evaluate t
 
 For example, if the human-created summary is \textit{"The great paper"} and our model produces \textit{"A wonderful article"}, ROUGE score will be $0$, even though the summary is perfect.
 
-\subsection{Embedding-based metric}
+\subsection{CAROUGE}
 
 We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of good summaries. Our assumption is that a good summary of a document contains words that are semantically close to the most important words or n-grams in that document.
 
@@ -159,26 +160,53 @@ The metric we propose is in fact a continuous version of ROUGE-N. Instead of tes
 
 For each $n$-gram in the generated summary we calculate the embedding-based score as its distance to the closest important $n$-gram in the document\footnote{CAROUGE stands for Continuous Abstractive ROUGE. The French word \textbf{carouge} means blackbird}.
 
-\[ \text{CAROUGE-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CAROUGE-N}(s_i) = \frac{1 - \operatorname*{min}_j ||s_i - c_j||}{k} \]
 
 Now we define the score of the whole summary as the average score of its words
 
-\[ \text{CAROUGE-N}(s) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CAROUGE-N}(s) = \frac1n \sum_{i=1}^n \frac{1 - \operatorname*{min}_j ||s_i - c_j||}{k} \]
 
 \subsubsection{Measuring word importance}
 \label{sec:importance}
 
 To choose which words are important we can use an algorithm of extractive text summarization. We will use \textbf{term frequency-inverse document frequency} (tf-idf) as a measure of importance because of its simplicity and importance (according to \cite{kumar-16}, tf-idf is one of the universally used terminologies in extractive summarization).
 
+Using the same example as in the section \ref{sec:rouge} we can see that CAROUGE score of a decent abstractive summary will be greater than 0.
+
+\[ r = \text{"The great paper"} \]
+\[ s = \text{"A wonderful article"} \]
+\[ \text{ROUGE}(s) = 0 \]
+\[ \text{CAROUGE}(s) = 0.8956 \]
+
 \section{Experiments and results}
 
-We have tried different methods of text summarization, both extractive (TextRank, TF-IDF) and abstractive (Seq2Seq, SeqGAN).
+We have tried different methods of text summarization, both extractive (TextRank, RAKE) and abstractive (Seq2Seq, SeqGAN).
 
-\subsection{TextRank}
-In this research we used a basic model TextRank as a baseline for comparison.  This is a graph method, influenced by PageRank algorithm, that represents the documents as a connected graph\cite{mihalcea-4}. We trained TextRank separately for each body of the paper and produced an extractive abstract-length summary. Scores were calculated on the basis of ROUGE score.
+\subsection{RAKE}
+
+Rapid Automatic Keyword Extraction algorithm (RAKE)\cite{rose-10} is a keyword extraction algorithm which tries to determine key phrases in a body of text by analyzing the frequency of word appearance and its co-occurance with other words in the text. Its main advantages include  time efﬁciency, operating on individual documents. It can be easily applied to new domains and multiple types of documents. RAKE is very sensitive to unclean data, as it relies on word frequency.
 
 \begin{table}[H]
-\caption{Example of an abstract generated by our model}
+\caption{Example of an abstract generated by RAKE}
+
+\begin{center}
+\begin{tabular}{|p{0.25\linewidth}|p{0.67\linewidth}|}
+\hline
+\textbf{Title} & The Multivariate Generalised von Mises distribution: Inference and  applications \\
+\hline
+\textbf{Real abstract} & ...Previously proposed multivariate circular distributions are shown to be special cases of this construction. Second, we introduce a new probabilistic model for circular regression, that is inspired by Gaussian Processes, and a method for probabilistic principal component analysis with circular hidden variables... \\
+\hline
+\textbf{\makecell[l]{Generated \\ abstract}} & ...many data modelling problems since higher order generalised von mises distributions model circular variables using distributional assumptions probabilistic principal component analysis ppca proposed resulting distribution inherits desirable characteristics paper makes three technical contribu tions multivariate generalised... \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{TextRank}
+In this research we used a basic model TextRank as a baseline for comparison.  This is a graph method, influenced by PageRank algorithm, that represents the documents as a connected graph\cite{mihalcea-4}. We trained TextRank separately for each body of the paper and produced an extractive abstract-length summary. Scores were calculated on the basis of ROUGE score. Unlike RAKE which operates n-grams, TextRank generates summaries using whole sentences. For that reason the generated summaries are more readable.
+
+\begin{table}[H]
+\caption{Example of an abstract generated by TextRank}
 
 \begin{center}
 \begin{tabular}{|p{0.25\linewidth}|p{0.67\linewidth}|}
@@ -193,7 +221,6 @@ In this research we used a basic model TextRank as a baseline for comparison.  T
 \end{center}
 \end{table}
 
-
 \subsection{Seq2Seq}
 We have used deep LSTM seq2seq model with attention for a task of text summarization. Seq2seq have proven to provide state-of-art result in tasks of sequence generation. At this point it is too hard to produce an abstract from the text of a paper, so we started with a simpler task of generating a title from the text of an abstract
 As input model takes paper abstract converted to the vectorized representation using word embeddings.  The input sequence is limited by 600 words. All abstracts that are bigger than limit are omitted. All smaller abstracts are padded with $\langle\text{SOS}\rangle$ word that represents the end of a sequence.
@@ -202,37 +229,36 @@ Model outputs sequence derived from the probability distribution. Each output wo
 
 \section{Evaluating results}
 
+In the table below you can see the results of our experiments represented by mean scores over all 2000 papers from our dataset.
+
 \begin{table}[H]
 \caption{Evaluating different models with ROUGE}
 
+% \begin{center}
+% \begin{tabular}{|l|c|c|c|c|}
+% \hline
+% \textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} & \textbf{CAROUGE-1} \\
+% \hline
+% TextRank & 18.04 & 4.10 & 10.89 & 0 \\
+% RAKE & 8.93 & 1.54 & 7.54 & 0 \\
+% Human & 0 & 0 & 0 & 0 \\
+% \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+
 \begin{center}
-\begin{tabular}{|l|c|c|c|}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} \\
+\textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{CAROUGE-1} \\
 \hline
-TextRank & 18.04 & 4.10 & 10.89 \\
-LSTM & 0 & 0 & 0 \\
-SeqGAN & 0 & 0 & 0 \\
+TextRank & 18.04 & 4.10 & 0 \\
+RAKE & 8.93 & 1.54 & 0 \\
+Human & 0 & 0 & 0 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
-
-% \subsection{Timeframes}
-
-% \paragraph{Deliverables for the $1^{st}$ evaluation}
-% \begin{itemize}
-% \item Dataset of papers collected from arXiv
-% \item Results of feature extraction
-% \item Implementations of the baseline state-of-the-art model and its application to our dataset
-% \end{itemize}
-
-% \paragraph{Deliverables for the $2^{nd}$ (final) evaluation}
-% \begin{itemize}
-% \item Implementation of several discrete GAN models
-% \item Evaluation of the created models on our dataset
-% \item Paper describing the results of our research
-% \end{itemize}
 
 \section*{Conclusions}
 
