@@ -120,24 +120,14 @@ We can build a graph of each document where words or sentences are nodes and the
 
 \subsection{Machine learning approach}
 
-In the last years, lots of attention was focused on learning how to apply neural networks to NLP tasks, including text summarization. Using encoder-decoder models it is now possible to produce abstract summaries. In \cite{nallapati-16} the off-the-shelf attentional encoder-decoder RNN that was originally developed for machine translation was applied to summarization and outperformed state of-the-art systems on two different English corpora. However, there is not much of information about neural networks usage in scientific text summarization.
+In the last years, lots of attention was focused on learning how to apply neural networks to NLP tasks, including text summarization. Using encoder-decoder models it is now possible to produce abstract summaries. In \cite{nallapati-16} the off-the-shelf attentional encoder-decoder RNN that was originally developed for machine translation was applied to summarization and outperformed state-of-the-art systems on two different English corpora. However, there is not much information about neural networks usage in scientific text summarization.
 
-\subsubsection{Generative adversarial networks}
-Generative adversarial networks (GAN) have shown a lot of success in image generation. However until recent years they were considered inapplicable to the discrete problems of natural language processing (NLP). The latest papers introduce novel approaches to overcoming these issues by combining GANs with reinforcement learning models and lay the foundation for the whole new field of research of adversarial language processing.
+Generative adversarial networks (GAN) are another promising approach for text summarization. Until recent years they were considered inapplicable to the discrete problems of natural language processing (NLP). The latest papers introduce novel approaches to overcoming these issues by combining GANs with reinforcement learning.
 
-Recent studies have shown that neural networks can be used for solving NLP problems. However, models that were mostly considered for this task were convolutional neural networks and recurrent neural networks.
-
-Applying generative adversarial networks to the problems of NLP is considered to be a complicated task because GANs are only defined for real-valued data, and all NLP is based on discrete values like words, characters, or bytes.
-
-\begin{quote}
-For example, if you output an image with a pixel value of 1.0, you can change that pixel value to 1.0001 on the next step. If you output the word "penguin", you can't change that to "penguin + .001" on the next step, because there is no such word as "penguin + .001". You have to go all the way from "penguin" to "ostrich".\footnote{Ian Goodfellow's answer to the related question on Reddit: \url{https://www.reddit.com/r/MachineLearning/comments/40ldq6/generative_adversarial_networks_for_text/}}
-\end{quote}
+Applying generative adversarial networks to the problems of NLP is considered to be a complicated task because GANs are only defined for continuous data, and all NLP is based on discrete values like words, characters, or bytes.
 
 However, in their latest paper Fedus, Goodfellow, and Dai\cite{fedus-18} overcome this problem by using reinforcement learning to train the generator while the discriminator is still trained via maximum likelihood and stochastic gradient descent, and use it to fill the gaps in the text.
 
-Li et al.\cite{li-pan-18} take a different approach...
- 
-However, this approach has not been used for abstract text summarization of scientific papers, yet.
 
 \section{Evaluation metrics}
 
