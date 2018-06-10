@@ -18,23 +18,18 @@ def summarize_doc(content, length):
 dataset = pd.read_csv('../../../data/papers-2K.csv')
 rake_res = pd.DataFrame(dataset['id'])
 rake_res['ROUGE2_f_unfilter'], rake_res['ROUGE1_f_unfilter'], rake_res['ROUGE1_p_unfilter'], rake_res['ROUGE2_p_unfilter'] = None, None, None, None
-rake_res['Summary'], rake_res['ROUGEl_p_unfilter'], rake_res['ROUGEl_f_unfilter'] = None, None, None
+rake_res['Title'], rake_res['ROUGEl_p_unfilter'], rake_res['ROUGEl_f_unfilter'] = None, None, None
+print(dataset.columns)
 
 for index, paper in dataset.iterrows():
     try:
-        content = paper['text']
-        if len(content) < len(paper['abstract']) * 3:
-            print("Too small text for paper", paper['id'], index)
-            raise ValueError
-        # ratio = round(len(paper['abstract'])/len(content), 3)
-        num_words = len(paper['abstract'].split(' '))
-        sum_text  = summarize_doc(content, num_words)
-
-        abstract = paper['abstract'].split()
+        content = paper['abstract']
+        num = len(paper['title'].split(' '))
+        sum_text = summarize_doc(content, num)
 
         rouge_unfilter = Rouge()
-        rouge_score_unfilter = rouge_unfilter.get_scores(' '.join(sum_text), paper['abstract'])
-        rake_res['Summary'].iloc[index] = ' '.join(sum_text)
+        rouge_score_unfilter = rouge_unfilter.get_scores(' '.join(sum_text), paper['title'])
+        rake_res['Title'].iloc[index] = ' '.join(sum_text)
         rake_res['ROUGE2_f_unfilter'].iloc[index] = rouge_score_unfilter[0]['rouge-2']['f']
         rake_res['ROUGE1_f_unfilter'].iloc[index] = rouge_score_unfilter[0]['rouge-1']['f']
         rake_res['ROUGEl_f_unfilter'].iloc[index] = rouge_score_unfilter[0]['rouge-l']['f']
@@ -44,4 +39,4 @@ for index, paper in dataset.iterrows():
         pass
 
 print(rake_res.head(5))
-rake_res.to_csv('rake_scores.csv', index=False)
+rake_res.to_csv('rake_scores_title.csv', index=False)
