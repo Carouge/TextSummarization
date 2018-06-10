@@ -1,5 +1,4 @@
 \documentclass[sigplan]{acmart}
-
 \settopmatter{printacmref=false} % Removes citation information below abstract
 \renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
 \pagestyle{plain} % removes running headers
@@ -162,13 +161,14 @@ To choose which words are important we can use an algorithm of extractive text s
 
 \section{Experiments and results}
 
-We have tried different methods of text summarization, both extractive (TextRank, TF-IDF) and abstractive (LSTM, SeqGAN).
+We have tried different methods of text summarization, both extractive (TextRank, TF-IDF) and abstractive (Seq2Seq, SeqGAN).
 
 \subsection{TextRank}
+\subsection{Seq2Seq}
+We have used seq2seq model with attention for a task of text summarization. Seq2seq have proven to provide state-of-art result in tasks of sequence generation.
+As input model takes paper abstract converted to the vectorized representation using word embeddings.  The input sequence is limited by 600 words. All abstracts that are bigger than limit are omitted. All smaller abstracts are padded with $\langle\text{SOS}\rangle$ word that represents the end of a sequence.
+Model outputs sequence derived from the probability distribution. Each output word samples from this distribution having input sequence and previously generated samples. Output sequence is limited by 30 words. First $\langle\text{SOS}\rangle$ word represent the end of a generated summary.
 
-
-\subsection{Deep LSTM}
-\subsection{GAN}
 
 \section{Evaluating results}
 
