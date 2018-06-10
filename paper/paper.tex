@@ -140,6 +140,7 @@ Li et al.\cite{li-pan-18} take a different approach...
 However, this approach has not been used for abstract text summarization of scientific papers, yet.
 
 \section{Evaluation metrics}
+\label{sec:evaluation}
 
 Evaluating a summary is a difficult task because there is no such thing as a single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better\cite{das-7}. Unlike other NLP problems, such as translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Therefore we must make assumptions about the space of good summaries. 
 
@@ -166,7 +167,7 @@ For example, if the human-created summary is \textit{"The great paper"} and our 
 
 We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of good summaries. Our assumption is that a good summary of a document contains words that are semantically close to the most important words or n-grams in that document.
 
-Let $s$ be the generated summary. If $|s|$ is the number of words in summary $s$, then $m=|s|-n+1$ is the number of $n$-grams in this summary. Let $s_1, s_2, \dots, s_m$ be all $n$-grams of summary $s$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important $n$-grams in the document. As we will show in section \ref{sec:importance}, there are many ways of measuring the importance of $n$-grams in a document.
+Let $s$ be the generated summary. If $|s|$ is the number of words in summary $s$, then $m=|s|-n+1$ is the number of $n$-grams in this summary. Let $s_1, s_2, \dots, s_m$ be all $n$-grams of summary $s$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important $n$-grams in the document. As we will show in section \ref{sec:importance}, there are many ways of measuring the importance of $n$-grams in a document. The definition of $n$-gram importance is closely related to the two base assumptions that were mentioned at the beginning of section \ref{sec:evaluation}.
 
 The metric we propose is in fact a continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semmantic distance between those n-grams.
 
@@ -176,7 +177,7 @@ For each $n$-gram in the generated summary we calculate the embedding-based scor
 
 Now we define the score of the whole summary as the average score of its words
 
-\[ \text{CAROUGE-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CAROUGE-N}(s) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 \subsubsection{Measuring word importance}
 \label{sec:importance}
