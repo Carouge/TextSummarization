@@ -1,6 +1,4 @@
 from rake_nltk import Rake
-from nltk.corpus import stopwords
-from nltk.tokenize import RegexpTokenizer
 import pandas as pd
 from nltk.translate.bleu_score import sentence_bleu
 from rouge import Rouge
