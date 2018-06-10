@@ -172,11 +172,11 @@ The metric we propose is in fact a continuous version of ROUGE-N. Instead of tes
 
 For each $n$-gram in the generated summary we calculate the embedding-based score as its distance to the closest important $n$-gram in the document.
 
-\[ \text{EBM-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CROUGE-N}(s_i) = \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 Now we define the score of the whole summary as the average score of its words
 
-\[ \text{EBM-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
+\[ \text{CROUGE-N}(S) = \frac1n \sum_{i=1}^n \operatorname*{min}_j ||s_i - c_j||_2 \]
 
 \subsubsection{Measuring word importance}
 \label{sec:importance}
