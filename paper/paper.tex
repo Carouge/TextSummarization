@@ -273,13 +273,13 @@ Human & 0.77 & 0.43 & 0.98 \\
 
 \section*{Conclusions}
 
-We have discussed different approaches to scientific text summarization and evaluated them with both ROUGE and CAROUGE (Continuous Abstractive ROUGE) - a new metric proposed by us that produces more accurate scores of abstractive summaries thanks to its continuous nature.
+We have discussed different approaches to scientific text summarization and evaluated them with both ROUGE and CAROUGE (Continuous Abstractive ROUGE) - a new metric proposed by us that uses word embeddings to produce more accurate scores of abstractive summaries.
 
-As we have seen in section \ref{sec:results}, both ROUGE and CAROUGE metrics give very high scores to human-created summaries, and much lower scores for the summaries produced by algorithms. However, considering the fact that ROUGE assumes human-judgement to be perfect, the score of 0.43 is way too low. As we explained in section \ref{sec:rouge}, this happens because human judgement is abstractive by its nature, and ROUGE score words best on extractive summaries. This problem is fixed by our metric, which gives the score of 0.98 on the same data.
+As we have seen in section \ref{sec:results}, both ROUGE and CAROUGE metrics give very high scores to human-created summaries, and much lower scores for the summaries produced by algorithms. However, considering the fact that ROUGE assumes human-judgement to be perfect, the score of 0.77 is way too low. As we explained in section \ref{sec:rouge}, this happens because human judgement is abstractive by its nature, and ROUGE score words best on extractive summaries. This problem is fixed by our metric, which gives the score of 0.98 on the same data.
 
-% \section*{Acknowledgements}
+\section*{Acknowledgements}
 
-% We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, and Maryana Romanyshyn for helping us with their advices.
+We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, and Maryana Romanyshyn for helping us with their advices. Also, we are very grateful to Rostyslav Zatserkovnyi, Anton Tarasov, Ivan Ilnytskyi, Taras Panychok, and Bohdan Petryshak for providing their manually created summaries of some papers from our dataset.
 
 \bibliographystyle{plain}
 \bibliography{paper}
