@@ -1,3 +1,6 @@
+"""
+Source: https://github.com/JRC1995/Abstractive-Summarization
+"""
 from __future__ import division
 import numpy as np
 

@@ -1,9 +1,6 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
+"""
+Source: https://github.com/JRC1995/Abstractive-Summarization
+"""
 import numpy as np
 from __future__ import division
 
