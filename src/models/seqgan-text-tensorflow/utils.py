@@ -1,3 +1,7 @@
+"""
+This model on based on the work of Benjamin Bolte
+Source: https://github.com/carrotflakes/seqgan-text-tensorflow
+"""
 """Some utils to help with text parsing / feeding to the model."""
 
 from __future__ import division

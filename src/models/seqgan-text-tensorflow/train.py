@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""
+This model on based on the work of Benjamin Bolte
+Source: https://github.com/carrotflakes/seqgan-text-tensorflow
+"""
 """Trains the model on some data, and saves it locally.
 
 The default training text is the `lorem.txt` file, which consists of some

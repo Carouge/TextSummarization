@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""
+This model on based on the work of Benjamin Bolte
+Source: https://github.com/carrotflakes/seqgan-text-tensorflow
+"""
 """Samples from a trained model.
 
 usage: sample.py [-h] [-t DICTIONARY] [-d LOGDIR] [-c] N
