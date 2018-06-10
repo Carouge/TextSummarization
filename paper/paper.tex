@@ -236,19 +236,20 @@ After some training our model was able to generate meaningful titles for most ab
 
 
 \section{Evaluating results}
+\label{sec:results}
 
 In the table below you can see the results of our experiments represented by mean scores of several models that were used to generate abstracts for same 2000 papers from our dataset given their text bodies.
 
 \begin{table}[H]
-\caption{Evaluating different models with ROUGE}
+\caption{Evaluating summarization algorithms}
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 \textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{CAROUGE-1} \\
 \hline
-TextRank & 0.18 & 0.04 & 0.89 \\
 RAKE & 0.08 & 0.02 & 0.82 \\
+TextRank & 0.18 & 0.04 & 0.89 \\
 \hline
 \end{tabular}
 \end{center}
@@ -257,7 +258,7 @@ RAKE & 0.08 & 0.02 & 0.82 \\
 We have also involved some human judges and asked them to come up with titles for 5 papers from our dataset, given their abstracts.
 
 \begin{table}[H]
-\caption{Evaluating different models with ROUGE}
+\caption{Evaluating human judges}
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
@@ -273,6 +274,8 @@ Human & 0.77 & 0.43 & 0.98 \\
 \section*{Conclusions}
 
 In this paper we demonstrated how Generative Adversarial Networks can be used for abstractive text summarization.
+
+As we have seen in section \ref{sec:results}, both ROUGE and CAROUGE metrics give very high scores to human-created summaries, and much lower scores for the summaries produced by algorithms. However, consider the fact that the base assumption of ROUGE takes human judgement as the ground truth
 
 % \section*{Acknowledgements}
 
