@@ -1,5 +1,8 @@
 """Utils for the TensorFlow model."""
-
+""" 
+This model on based on the work of Benjamin Bolte
+Source: https://github.com/carrotflakes/seqgan-text-tensorflow
+"""
 from collections import OrderedDict
 import warnings
 
