@@ -56,11 +56,9 @@ Automatic text summarization is the task of producing a concise and fluent summa
 
 \subsection{Abstractive vs extractive summarization}
 
-\paragraph{Extractive text summarization}
+\paragraph{Extractive text summarization} identifies and extracts important words, phrases, or sentences from a document and puts them together as a summary. As a result, the produced summary is a subset of the words from original summary\cite{kumar-16}. Most work in the field of text summarization has been done around extractive summarization. Generally, it produces better results in terms of the amount of information preserved in a short summary. 
 
-\subsection{Abstractive summarization}
-
-\paragraph{Abstractive text summarization} allows us to write summaries that are almost as good as those written by humans. It is closer to what humans do when they write text summaries, but also more complex. T
+\paragraph{Abstractive text summarization} allows us to write summaries that are almost as good as those written by humans. Generally speaking, abstractive models perform worse than extractive ones. They are hard to train and often deviate too much from the original text. And since they try to describe the meaning of a text using different words, they preserve less information. Nevertheless, abstractive summarization is closer to what humans do when they write text summaries, and for that reason this is a very promissing AI topics.
 
 \subsection{Scientific text summarization}
 
@@ -169,7 +167,9 @@ Now we define the score of the whole summary as the average score of its words
 \subsubsection{Measuring word importance}
 \label{sec:importance}
 
-To choose which words are important we can use an algorithm of extractive text summarization. We will use \textbf{term frequency-inverse document frequency} (tf-idf) as a measure of importance because of its simplicity and importance (according to \cite{kumar-16}, tf-idf is one of the universally used terminologies in extractive summarization).
+Deciding which words or sentences are important in a piece of text is part of the extractive summarization problem. Therefore, one way to choose $k$ important words would be to use part of a simple extractive model. For example, we could use tf-idf (term frequency-inverse document frequency) which would assign the highest scores to the words ($n$-grams) which are very frequent in the given document and very unfrequent in other documents.
+
+Another way of choosing important words would be to follow the assumption of ROUGE, according to which a good summary should be as close as possible to the human-created summaries. This means that we will compare generated summaries to the corresponding paper abstract (which are in fact author-created summaries).
 
 Using the same example as in the section \ref{sec:rouge} we can see that CAROUGE score of a decent abstractive summary will be greater than 0.
 
@@ -237,32 +237,34 @@ After some training our model was able to generate meaningful titles for most ab
 
 \section{Evaluating results}
 
-In the table below you can see the results of our experiments represented by mean scores over all 2000 papers from our dataset.
+In the table below you can see the results of our experiments represented by mean scores of several models that were used to generate abstracts for same 2000 papers from our dataset given their text bodies.
 
 \begin{table}[H]
 \caption{Evaluating different models with ROUGE}
-
-% \begin{center}
-% \begin{tabular}{|l|c|c|c|c|}
-% \hline
-% \textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} & \textbf{CAROUGE-1} \\
-% \hline
-% TextRank & 18.04 & 4.10 & 10.89 & 0 \\
-% RAKE & 8.93 & 1.54 & 7.54 & 0 \\
-% Human & 0 & 0 & 0 & 0 \\
-% \hline
-% \end{tabular}
-% \end{center}
-% \end{table}
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 \textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{CAROUGE-1} \\
 \hline
-TextRank & 18.04 & 4.10 & 0 \\
-RAKE & 8.93 & 1.54 & 0 \\
-Human & 0 & 0 & 0 \\
+TextRank & 0.18 & 0.04 & 0.89 \\
+RAKE & 0.08 & 0.02 & 0.82 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+We have also involved some human judges and asked them to come up with titles for 5 papers from our dataset, given their abstracts.
+
+\begin{table}[H]
+\caption{Evaluating different models with ROUGE}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{CAROUGE-1} \\
+\hline
+Human & 0.77 & 0.43 & 0 \\
 \hline
 \end{tabular}
 \end{center}
@@ -274,7 +276,7 @@ In this paper we demonstrated how Generative Adversarial Networks can be used fo
 
 % \section*{Acknowledgements}
 
-% We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, Maryana Romanyshyn, and Oksana Tkach for supporting us with their advices.
+% We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, and Maryana Romanyshyn for helping us with their advices.
 
 \bibliographystyle{plain}
 \bibliography{paper}
