@@ -40,7 +40,7 @@
 
 \begin{abstract}
 
-In this work we overview recent advancements in the field of abstractive text summarization and discuss the use of deep learning models, especially Generative Adversarial Networks (GAN). We apply different models to our dataset of scientifix papers, acquired from arXiv, and evaluate them in terms of simplicity and performance.
+In this work, we overview recent advancements in the field of abstractive text summarization and discuss the use of deep learning models, especially Generative Adversarial Networks (GAN). We apply different models to our dataset of scientific papers, acquired from arXiv, and evaluate them in terms of simplicity and performance.
 
 We propose our own metric based on word-embeddings, which we believe will be more suitable for evaluation of abstractive summaries.
 
@@ -58,7 +58,7 @@ Automatic text summarization is the task of producing a concise and fluent summa
 
 \paragraph{Extractive text summarization} identifies and extracts important words, phrases, or sentences from a document and puts them together as a summary. As a result, the produced summary is a subset of the words from original summary\cite{kumar-16}. Most work in the field of text summarization has been done around extractive summarization. Generally, it produces better results in terms of the amount of information preserved in a short summary. 
 
-\paragraph{Abstractive text summarization} allows us to write summaries that are almost as good as those written by humans. Generally speaking, abstractive models perform worse than extractive ones. They are hard to train and often deviate too much from the original text. And since they try to describe the meaning of a text using different words, they preserve less information. Nevertheless, abstractive summarization is closer to what humans do when they write text summaries, and for that reason this is a very promissing AI topics.
+\paragraph{Abstractive text summarization} allows us to write summaries that are almost as good as those written by humans. Generally speaking, abstractive models perform worse than extractive ones. They are hard to train and often deviate too much from the original text. And since they try to describe the meaning of a text using different words, they preserve less information. Nevertheless, abstractive summarization is closer to what humans do when they write text summaries, and for that reason, this is a very promising AI topics.
 
 \subsection{Scientific text summarization}
 
@@ -66,24 +66,24 @@ The problem of summarizing scientific texts is very different from general-purpo
 
 \subsection{Structure of the paper}
 
-In this study we focus on abstractive text summarization. We do a brief overview of the related work that has been done in this field. Then we proceed to discussing different models for statistical and deep summarization. Then we present our dataset of scientific papers collected from arXiv and compare the performance of different models on this dataset. 
+In this study, we focus on abstractive text summarization. We do a brief overview of the related work that has been done in this field. Then we proceed to discuss different models for statistical and deep summarization. Then we present our dataset of scientific papers collected from arXiv and compare the performance of different models on this dataset. 
 
 \section{Related work}
 
 Allahyari et al.\cite{allahyari-17} make a survey of the most successful text summarization techniques as of July 2017.
 
-This September Li et al. \cite{li-cohn-17} described their submission to the sentiment analysis sub-task of ?Build It, Break It: The Language Edition (BIBI)? where they successfully apply generative approach to the problem of sentiment analysis.
+This September Li et al. \cite{li-cohn-17} described their submission to the sentiment analysis sub-task of Build It, Break It: The Language Edition (BIBI) where they successfully apply a generative approach to the problem of sentiment analysis.
 
 In their paper \textit{Generative Adversarial Network for Abstractive Text Summarization} Liu et al.\cite{liu-17} built an adversarial model that achieved competitive ROUGE scores with the state-of-the-art methods on CNN/Daily Mail dataset. They compare the performance of their approach with three methods, including the abstractive model, the pointer-generator coverage networks, and the abstractive deep reinforced model.
 
-In contrast Zhang et al.\cite{zhang-17} don't use reinforcement learning but rather introduce TextGAN with an LSTM-based generator and kernelized discrepancy metric.
+In contrast, Zhang et al.\cite{zhang-17} don't use reinforcement learning but rather introduce TextGAN with an LSTM-based generator and kernelized discrepancy metric.
 
 \section{Data collection and preparation}
 \label{sec:data}
 
 Thanks to the open policy of arXiv we were able to collect our own dataset of scientific papers from \textit{stat.ML} category\footnote{\url{https://arxiv.org/list/stat.ML/recent}}. We publish it together with this paper an encourage everyone to use it as they like in their own projects.
 
-\paragraph{Structure of the data} Each paper on arXiv has a unique identifier (for eample: 1801.01587). It can be used to extract any data that is available and related to that paper, including its metadata and full text as PDF.
+\paragraph{Structure of the data} Each paper on arXiv has a unique identifier (for example: 1801.01587). It can be used to extract any data that is available and related to that paper, including its metadata and full text as PDF.
 
 Our dataset contains 2000 documents (papers). Each one of them is represented by a row with the following properties:
 
@@ -94,15 +94,15 @@ Our dataset contains 2000 documents (papers). Each one of them is represented by
   \item body of the paper
 \end{enumerate}
 
-Our script\footnote{Code and instructions for collecting the data is available in our repository: \url{https://github.com/Carouge/TextSummarization}} can be used to collect more data, but for our problem a set of 2000 papers from one category is enough. For example, DUC (Document Understanding Conference) dataset which is among the most commonly used in the feld of text summarization has 30 sets with approximately 10 documents each\footnote{\url{https://www-nlpir.nist.gov/projects/duc/guidelines/2001.html}}.
+Our script\footnote{Code and instructions for collecting the data are available in our repository: \url{https://github.com/Carouge/TextSummarization}} can be used to collect more data, but for our problem, a set of 2000 papers from one category is enough. For example, DUC (Document Understanding Conference) dataset which is among the most commonly used in the field of text summarization has 30 sets with approximately 10 documents each\footnote{\url{https://www-nlpir.nist.gov/projects/duc/guidelines/2001.html}}.
 
-\paragraph{Cleaning the text} We collected our data as PDF files and parsed them to extract the raw text. This produced a huge amount of uniterpretable UTF-8 characters from mathematical expressions. After removing those extra characters.
+\paragraph{Cleaning the text} We collected our data as PDF files and parsed them to extract the raw text. This produced a huge amount of uninterpretable UTF-8 characters from mathematical expressions. After removing those extra characters.
 
-We wanted to remove everething that is not a known English word, but that would filter out words like "GAN", "backprop" etc. as most standard corpuses of words, such as nltk.corpus, don't include specialized scientific terminology. So we filtered the words using manually created rules based on features like word length and frequence of vowels. This leaves some noise behind, but it will not affect our models.
+We wanted to remove everything that is not a known English word, but that would filter out words like "GAN", "backprop" etc. as most standard corpora of words, such as nltk.corpus, don't include specialized scientific terminology. So we filtered the words using manually created rules based on features like word length and frequency of vowels. This leaves some noise behind, but it will not affect our models.
 
 \section{Models for text summarization}
 
-Three main classes of models that are used for text summarization task are statistical frequency computation models (TFIDF etc.), graph methods (TextRank, LexRank etc.) and machine learning approach.
+Three main classes of models that are used for a text summarization task are statistical frequency computation models (TFIDF etc.), graph methods (TextRank, LexRank etc.) and machine learning approach.
 
 \subsection{Statistical methods}
 
@@ -110,7 +110,7 @@ These methods are based on the assumption that the importance of a word or sente
 
 \subsection{Graph models}
 
-We can build a graph of each document where words or sentences are nodes and the edges are the connections between each pair of nodes. The weights on these edges represent similarity between words or sentences in the whole text. While proving to have better results than simple frequency-based methods, graph models are still bounded by the absence of lexic understanding and ability to perform extractive summary only.
+We can build a graph of each document where words or sentences are nodes and the edges are the connections between each pair of nodes. The weights on these edges represent similarity between words or sentences in the whole text. While proving to have better results than simple frequency-based methods, graph models are still bounded by the absence of lexical understanding and ability to perform extractive summary only.
 
 \subsection{Machine learning approach}
 
@@ -126,35 +126,35 @@ However, in their latest paper Fedus, Goodfellow, and Dai\cite{fedus-18} overcom
 \section{Evaluation metrics}
 \label{sec:evaluation}
 
-Evaluating a summary is a difficult task because there is no such thing as a single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better\cite{das-7}. Unlike other NLP problems, such as translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Therefore we must make assumptions about the space of good summaries. 
+Evaluating a summary is a difficult task because there is no such thing as a single summary that would be ideal for a given document. In most cases, even human evaluators cannot agree on which of the given summaries is better\cite{das-7}. Unlike other NLP problems, such as translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Therefore we must make assumptions about the space of good summaries. 
 
 \begin{enumerate}
 \item assume that a good summary would be close to some \textit{ideal} summary manually created by humans
-\item assume that the goodness of summary can be measured as the ammount of important information it contains (this assumption can be infered from the definition of text summarization).
+\item assume that the goodness of summary can be measured as the amount of important information it contains (this assumption can be inferred from the definition of text summarization).
 \end{enumerate}
 
-In the following sections we briefly describe some of the commonly used metrics for text summarization that is based on the first assumption and propose our own metric that is based on second one (in fact, we will show that the proposed metric can be formulated in a different way to work with the first assumption).
+In the following sections, we briefly describe some of the commonly used metrics for text summarization that is based on the first assumption and propose our own metric that is based on second one (in fact, we will show that the proposed metric can be formulated in a different way to work with the first assumption).
 
 \subsection{ROUGE}
 \label{sec:rouge}
 
-The most widely used score for evaluating text summarizations is ROUGE (Recall-Oriented Understudy for Gisting Evaluation) inroduced by Chin-Yew Lin in 2004\cite{lin-4}.
+The most widely used score for evaluating text summarizations is ROUGE (Recall-Oriented Understudy for Gisting Evaluation) introduced by Chin-Yew Lin in 2004\cite{lin-4}.
 
 \[ \text{ROUGE-N}(s) = \frac{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(s) \rangle}{\sum_{r \in R} \langle \Phi_n(r), \Phi_n(r) \rangle} \]
 
 \[ \text{ROUGE-L}(s) = \frac{(1 + \beta^2) R_{LCS} P_{LCS}}{R_{LCS} + \beta^2 P_{LCS}} \]
 
-ROUGE works well for extractive text summarization. But if we need to evaluate the generated summary which contains different words from the ones that occured in paper, the score will always be small because, even though the new words can be close to the expected ones, two summaries don't overlap in terms of word equality.
+ROUGE works well for extractive text summarization. But if we need to evaluate the generated summary which contains different words from the ones that occurred in the paper, the score will always be small because, even though the new words can be close to the expected ones, two summaries don't overlap in terms of word equality.
 
 For example, if the human-created summary is \textit{"The great paper"} and our model produces \textit{"A wonderful article"}, ROUGE score will be $0$, even though the summary is perfect.
 
 \subsection{CAROUGE}
 
-We propose a metric that uses word embeddings to evaluate summaries based on their semmantic distance to the space of good summaries. Our assumption is that a good summary of a document contains words that are semantically close to the most important words or n-grams in that document.
+We propose a metric that uses word embeddings to evaluate summaries based on their semantic distance to the space of good summaries. Our assumption is that a good summary of a document contains words that are semantically close to the most important words or n-grams in that document.
 
 Let $s$ be the generated summary. If $|s|$ is the number of words in summary $s$, then $m=|s|-n+1$ is the number of $n$-grams in this summary. Let $s_1, s_2, \dots, s_m$ be all $n$-grams of summary $s$ and let $c_1, c_2, \dots, c_k$ be the $k$ most important $n$-grams in the document. As we will show in section \ref{sec:importance}, there are many ways of measuring the importance of $n$-grams in a document. The definition of $n$-gram importance is closely related to the two base assumptions that were mentioned at the beginning of section \ref{sec:evaluation}.
 
-The metric we propose is in fact a continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semmantic distance between those n-grams.
+The metric we propose is, in fact, a continuous version of ROUGE-N. Instead of testing the equality of n-grams in the compared summaries we use the continuous measure of semantic distance between those n-grams.
 
 For each $n$-gram in the generated summary we calculate the embedding-based score as its distance to the closest important $n$-gram in the document\footnote{CAROUGE stands for Continuous Abstractive ROUGE. The French word \textbf{carouge} means blackbird}.
 
@@ -184,7 +184,7 @@ We have tried different methods of text summarization, both extractive (TextRank
 
 \subsection{RAKE}
 
-Rapid Automatic Keyword Extraction algorithm (RAKE)\cite{rose-10} is a keyword extraction algorithm which tries to determine key phrases in a body of text by analyzing the frequency of word appearance and its co-occurance with other words in the text. Its main advantages include  time efﬁciency, operating on individual documents. It can be easily applied to new domains and multiple types of documents. RAKE is very sensitive to unclean data, as it relies on word frequency.
+Rapid Automatic Keyword Extraction algorithm (RAKE)\cite{rose-10} is a keyword extraction algorithm which tries to determine key phrases in a body of text by analyzing the frequency of word appearance and its co-occurrence with other words in the text. Its main advantages include time efﬁciency, operating on individual documents. It can be easily applied to new domains and multiple types of documents. RAKE is very sensitive to unclean data, as it relies on word frequency.
 
 \begin{table}[H]
 \caption{Example of an abstract generated by RAKE}
@@ -203,7 +203,7 @@ Rapid Automatic Keyword Extraction algorithm (RAKE)\cite{rose-10} is a keyword e
 \end{table}
 
 \subsection{TextRank}
-In this research we used a basic model TextRank as a baseline for comparison.  This is a graph method, influenced by PageRank algorithm, that represents the documents as a connected graph\cite{mihalcea-4}. We trained TextRank separately for each body of the paper and produced an extractive abstract-length summary. Scores were calculated on the basis of ROUGE score. Unlike RAKE which operates n-grams, TextRank generates summaries using whole sentences. For that reason the generated summaries are more readable.
+In this research, we used a basic model TextRank as a baseline for comparison.  This is a graph method, influenced by PageRank algorithm, that represents the documents as a connected graph\cite{mihalcea-4}. We trained TextRank separately for each body of the paper and produced an extractive abstract-length summary. Scores were calculated on the basis of ROUGE score. Unlike RAKE which operates n-grams, TextRank generates summaries using whole sentences. For that reason, the generated summaries are more readable.
 
 \begin{table}[H]
 \caption{Example of an abstract generated by TextRank}
@@ -213,7 +213,7 @@ In this research we used a basic model TextRank as a baseline for comparison.  T
 \hline
 \textbf{Title} & Churn Prediction in Mobile Social Games: Towards a Complete Assessment Using Survival Ensembles \\
 \hline
-\textbf{Real abstract} & ...for each player, we predict the probability of churning as function of time, which permits to distinguish various levels of loyalty profiles ... Our results show that churn prediction by survival ensembles significantly improves the accuracy and robustness of traditional analyses, like Cox regression... \\
+\textbf{Real abstract} & ...for each player, we predict the probability of churning as the function of time, which permits to distinguish various levels of loyalty profiles ... Our results show that churn prediction by survival ensembles significantly improves the accuracy and robustness of traditional analyses, like Cox regression... \\
 \hline
 \textbf{\makecell[l]{Generated \\ abstract}} & Conditional inference survival ensembles are constructed based on unbiased trees avoiding this problem the resulting prediction of this model contains for each player a survival function indicating the probability of churn as a function of time since the registration in the game. \\
 \hline
@@ -226,7 +226,7 @@ We have used deep LSTM seq2seq model with attention for a task of text summariza
 As input model takes paper abstract converted to the vectorized representation using word embeddings.  The input sequence is limited by 600 words. All abstracts that are bigger than limit are omitted. All smaller abstracts are padded with $\langle\text{SOS}\rangle$ word that represents the end of a sequence.
 Model outputs sequence derived from the probability distribution. Each output word samples from this distribution having input sequence and previously generated samples. Output sequence is limited by 30 words. First $\langle\text{SOS}\rangle$ word represent the end of a generated summary.
 
-After some training our model was able to generate meaningful titles for most abstracts. Take a look at this example:
+After some training, our model was able to generate meaningful titles for most abstracts. Take a look at this example:
 
 \paragraph{Abstract} this is great popcorn and i too have the whirly pop. the unk packs work wonderfully. i have not found it too salty or the packages leak. i have found the recent price of \$35 too expensive and have purchased direct from great american for half the price.
 
@@ -236,20 +236,19 @@ After some training our model was able to generate meaningful titles for most ab
 
 
 \section{Evaluating results}
-\label{sec:results}
 
 In the table below you can see the results of our experiments represented by mean scores of several models that were used to generate abstracts for same 2000 papers from our dataset given their text bodies.
 
 \begin{table}[H]
-\caption{Evaluating summarization algorithms}
+\caption{Evaluating different models with ROUGE}
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 \textbf{Model} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{CAROUGE-1} \\
 \hline
-RAKE & 0.08 & 0.02 & 0.82 \\
 TextRank & 0.18 & 0.04 & 0.89 \\
+RAKE & 0.08 & 0.02 & 0.82 \\
 \hline
 \end{tabular}
 \end{center}
@@ -258,7 +257,7 @@ TextRank & 0.18 & 0.04 & 0.89 \\
 We have also involved some human judges and asked them to come up with titles for 5 papers from our dataset, given their abstracts.
 
 \begin{table}[H]
-\caption{Evaluating human judges}
+\caption{Evaluating different models with ROUGE}
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
@@ -273,13 +272,11 @@ Human & 0.77 & 0.43 & 0.98 \\
 
 \section*{Conclusions}
 
-In this paper we demonstrated how Generative Adversarial Networks can be used for abstractive text summarization.
-
-As we have seen in section \ref{sec:results}, both ROUGE and CAROUGE metrics give very high scores to human-created summaries, and much lower scores for the summaries produced by algorithms. However, consider the fact that the base assumption of ROUGE takes human judgement as the ground truth
+In this paper, we demonstrated how Generative Adversarial Networks can be used for abstractive text summarization.
 
 % \section*{Acknowledgements}
 
-% We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, and Maryana Romanyshyn for helping us with their advices.
+% We would like to express our gratitude to Anatolii Stehnii, Artem Chernodub, and Maryana Romanyshyn for helping us with their pieces of advice.
 
 \bibliographystyle{plain}
 \bibliography{paper}
