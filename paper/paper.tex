@@ -200,6 +200,14 @@ We have used deep LSTM seq2seq model with attention for a task of text summariza
 As input model takes paper abstract converted to the vectorized representation using word embeddings.  The input sequence is limited by 600 words. All abstracts that are bigger than limit are omitted. All smaller abstracts are padded with $\langle\text{SOS}\rangle$ word that represents the end of a sequence.
 Model outputs sequence derived from the probability distribution. Each output word samples from this distribution having input sequence and previously generated samples. Output sequence is limited by 30 words. First $\langle\text{SOS}\rangle$ word represent the end of a generated summary.
 
+After some training our model was able to generate meaningful titles for most abstracts. Take a look at this example:
+
+\paragraph{Abstract} this is great popcorn and i too have the whirly pop. the unk packs work wonderfully. i have not found it too salty or the packages leak. i have found the recent price of \$35 too expensive and have purchased direct from great american for half the price.
+
+\paragraph{Predicted summary} great popcorn!!
+
+\paragraph{Actual summary} great unk american popcorn
+
 
 \section{Evaluating results}
 
