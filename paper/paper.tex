@@ -94,12 +94,12 @@ Thanks to the open policy of arXiv we were able to collect our own dataset of sc
 
 Our dataset contains 2000 documents (papers). Each one of them is represented by a row with the following properties:
 
-\begin{itemize}
+\begin{enumerate}
   \item arXiv's unique identifier
   \item title
   \item abstract
   \item body of the paper
-\end{itemize}
+\end{enumerate}
 
 Our script\footnote{Code and instructions for collecting the data is available in our repository: \url{https://github.com/MachineLearningUCU/TextSummarization}} can be used to collect more data, but for our problem a set of 2000 papers from one category is enough. For example, DUC (Document Understanding Conference) dataset which is among the most commonly used in the feld of text summarization has 30 sets with approximately 10 documents each\footnote{\url{https://www-nlpir.nist.gov/projects/duc/guidelines/2001.html}}.
 
@@ -128,9 +128,14 @@ However, this approach has not been used for abstract text summarization of scie
 
 \section{Evaluation metrics}
 
-Evaluating a summary is a difficult task because there is no single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better.\cite{das-7}. Unlike other NLP problems, like translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Manual evaluation of summaries is too expensive, so in the following sections we will only consider automatic techniques. 
+Evaluating a summary is a difficult task because there is no such thing as a single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better\cite{das-7}. Unlike other NLP problems, such as translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Therefore we must make assumptions about the space of good summaries. 
 
-Automatic evaluation metrics compare manually written ideal summaries with summaries generated automatically by summarization systems.
+\begin{enumerate}
+\item assume that a good summary would be close to some \textit{ideal} summary manually created by humans
+\item assume that the goodness of summary can be measured as the ammount of important information it contains (this assumption can be infered from the definition of text summarization).
+\end{enumerate}
+
+In the following sections we briefly describe some of the commonly used metrics for text summarization that is based on the first assumption and propose our own metric that is based on second one (in fact, we will show that the proposed metric can be formulated in a different way to work with the first assumption).
 
 \subsection{ROUGE}
 
