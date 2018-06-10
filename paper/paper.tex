@@ -88,11 +88,11 @@ In contrast Zhang et al.\cite{zhang-17} don't use reinforcement learning but rat
 
 \section{Data collection and preparation}
 
-Thanks to the open policy of arXiv we were able to collect our own dataset of scientific papers from \textit{stat.ML} category. We publish it together with this paper an encourage everyone to use it as they like in their own projects.
+Thanks to the open policy of arXiv we were able to collect our own dataset of scientific papers from \textit{stat.ML} category\footnote{\url{https://arxiv.org/list/stat.ML/recent}}. We publish it together with this paper an encourage everyone to use it as they like in their own projects.
 
 \paragraph{Structure of the data} Each paper on arXiv has a unique identifier (for eample: 1801.01587). It can be used to extract any data that is available and related to that paper, including its metadata and full text as PDF.
 
-Our dataset contains 2000 documents (papers). Each one of them is represented by a row with three properties:
+Our dataset contains 2000 documents (papers). Each one of them is represented by a row with the following properties:
 
 \begin{itemize}
   \item arXiv's unique identifier
@@ -128,10 +128,11 @@ However, this approach has not been used for abstract text summarization of scie
 
 \section{Evaluation metrics}
 
-Evaluating a summary is a difficult task because there does not exist an ideal summary for a given document or set of documents. \cite{das-7}. Manual evaluation is too expensive, so we will only be considering the automatic techniques.
-
+Evaluating a summary is a difficult task because there is no single summary that would be ideal for a given document. In most cases even human evaluators can not agree on which of the given summaries is better.\cite{das-7}. Unlike other NLP problems, like translation or parsing, when it comes to text summarization we can not clearly define what makes a summary good or bad. Manual evaluation of summaries is too expensive, so in the following sections we will only consider automatic techniques. 
 
 Automatic evaluation metrics compare manually written ideal summaries with summaries generated automatically by summarization systems.
+
+\subsection{ROUGE}
 
 The most widely used score for evaluating text summarizations is Recall-Oriented Understudy for Gisting Evaluation (ROUGE) inroduced by Chin-Yew Lin in 2004\cite{lin-4}\cite{das-7}\cite{kishore-2}.
 

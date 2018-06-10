@@ -1,5 +1,5 @@
 .DS_Store/
 paper/*
-!paper/*.pdf
+paper/*.pdf
 !paper/*.tex
 !paper/*.bib
